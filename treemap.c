@@ -25,7 +25,6 @@ int is_equal(TreeMap* tree, void* key1, void* key2){
     else return 0;
 }
 
-
 TreeNode * createTreeNode(void* key, void * value) {
     TreeNode * new = (TreeNode *)malloc(sizeof(TreeNode));
     if (new == NULL) return NULL;
@@ -70,8 +69,22 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
-    return NULL;
+
+    TreeNode* temp = tree->root;
+
+    while(temp != NULL) {
+        Pair*aux = (Pair*)temp;
+        if(key == aux->key)
+            return aux->value;
+        else if(key < aux->key)
+            temp = temp->left;
+        else
+            temp = temp->right;
+    }
+
+    return NULL;  // Retorna NULL si la clave no se encuentra
 }
+   
 
 
 Pair * upperBound(TreeMap * tree, void* key) {
