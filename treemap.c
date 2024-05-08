@@ -50,8 +50,9 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 }
 
 TreeNode * minimum(TreeNode * x){
-
-    return NULL;
+    if(x==NULL) return NULL;
+    while(x->left!=NULL) x=x->left;
+    return x;
 }
 
 
@@ -61,15 +62,12 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
 void eraseTreeMap(TreeMap * tree, void* key){
     if (tree == NULL || tree->root == NULL) return;
-
+    
     if (searchTreeMap(tree, key) == NULL) return;
     TreeNode* node = tree->current;
     removeNode(tree, node);
 
 }
-
-
-
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
 
@@ -81,13 +79,10 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
         }
         if(tree->lower_than(key,temp->pair->key)) temp = temp->left;
         else temp = temp->right;
-        
     }    
 
-    return NULL;  // Retorna NULL si la clave no se encuentra
+    return NULL;  
 }
-   
-
 
 Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
