@@ -97,9 +97,11 @@ Pair * nextTreeMap(TreeMap * tree) {
      Pair* par = (Pair*)minimum(tree->current->right);
         return par;
     }
+    
     TreeNode * temp = tree->current;
     while(temp->parent != NULL && temp->parent->right == temp){
         temp = temp->parent;
         return (Pair*)temp->parent;
     }
+    return NULL;
 }
