@@ -99,7 +99,9 @@ Pair * nextTreeMap(TreeMap * tree) {
     TreeNode * temp = tree->current;
     if(temp->right != NULL){
         tree->current = temp->right;
-        return (Pair*)minimum(tree->current);
+        TreeNode* arbol = minimum(tree->current);
+        
+        return arbol->pair;
     } 
    while(temp->parent != NULL && temp->parent->right == temp){
        temp = temp->parent;
