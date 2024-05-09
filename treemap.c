@@ -104,20 +104,20 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         else
             temp = temp->right;
     }
+    
     if(temp == NULL) return;
 
-    if(temp->left == NULL && temp->right == NULL){
-        if(temp != tree->root){
-            if(parent->left == temp)
-                parent->left = NULL;
-        else
-            parent->right = NULL;
-        
-    }else{
-        tree->root = NULL;
+        if(temp->left == NULL && temp->right == NULL){
+            if(parent != NULL){
+                if(parent->left == temp)
+                    parent->left = NULL;
+                else
+                    parent->right = NULL;
+            } else {
+                tree->root = NULL; 
+            }
+            free(temp);
         }
-        free(temp);
-    }
     else if(temp->left == NULL || temp->right == NULL){
         TreeNode* child;
         if(temp->left != NULL)
@@ -135,6 +135,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         }
         free(temp);
     }
+        
     else{
         TreeNode* successor = minimum(temp->right);
         void* sucKey = successor->pair->key;
@@ -144,7 +145,6 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         temp->pair->value = sucValue;
     }
 }
-
 
 void eraseTreeMap(TreeMap * tree, void* key){
     if (tree == NULL || tree->root == NULL) return;
@@ -171,6 +171,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 }
 
 Pair * upperBound(TreeMap * tree, void* key) {
+    
     return NULL;
 }
 
