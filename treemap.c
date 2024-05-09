@@ -104,7 +104,16 @@ Pair * nextTreeMap(TreeMap * tree) {
     if(temp->right != NULL){
         temp = temp->right;
         while(temp->left != NULL) temp = temp->left;
-    }
     tree->current = temp;
     return temp->pair;
+    }
+
+    while(temp->parent != NULL && temp->parent->right == temp){
+        temp = temp->parent;
+    }
+    if(temp->parent == NULL) return NULL;
+
+    tree->current = temp->parent;
+    return tree->current->pair;
+    
 }
