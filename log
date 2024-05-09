@@ -109,3 +109,17 @@ Thu 09 May 2024 04:28:40 AM UTC:
  tests:  22|2
 total_score: 45/70
 e9b3e2a
+Thu 09 May 2024 07:40:41 PM UTC: 
+ treemap.c | 43 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:101:11: error: suggest parentheses around assignment used as truth value [-Werror=parentheses]
+  101 |     while(current = NULL){
+      |           ^~~~~~~
+treemap.c:114:35: error: statement with no effect [-Werror=unused-value]
+  114 |                     parent->right == NULL;
+      |                                   ^
+cc1: all warnings being treated as errors
+Compilation failed
+ad534bf
