@@ -100,6 +100,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     while(current == NULL){
         compare = tree->lower_than(node->pair->key, current->pair->key);
+        
         if(compare < 0){
             parent = current;
             current = current->left;
@@ -107,26 +108,29 @@ void removeNode(TreeMap * tree, TreeNode* node) {
              parent = current;
             current = current->right;
         }else {
-            if(current->left == NULL && current->right == NULL){
-                if(parent->left == current){
-                    parent->left = NULL;
-                }else{
-                    parent->right = NULL;
+                if(current->left == NULL && current->right == NULL){
+                    if(parent->left == current){
+                        parent->left = NULL;
+                    }else{
+                        parent->right = NULL;
+                    }
+                    free(current);
                 }
-            }
-                
+                    
             else if(current->left == NULL){
                 if(parent->left == current){
                     parent->right = current->right;
                 }else{
                     parent->right = current->right;
                 }
+                 free(current);
             } else if(current->right == NULL){
                 if(parent->left == current){
                     parent->left = current->left;
                 }else{
                     parent->right = current->left;
                 }
+                 free(current);
             }
             else{
                 TreeNode* sucesor = minimum(current->right);
