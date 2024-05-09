@@ -94,56 +94,16 @@ TreeNode * minimum(TreeNode * x){
 
 void removeNode(TreeMap * tree, TreeNode* node) {
     if(tree == NULL || node == NULL) return;
-    TreeNode* current = tree->root;
+    TreeNode* temp = tree->root;
     TreeNode* parent = NULL;
-    int compare;
 
-    while(current != NULL){
-        compare = tree->lower_than(node->pair->key, current->pair->key);
-        if(compare < 0){
-            parent = current;
-            current = current->left;
-        } else if(compare > 0){
-            parent = current;
-            current = current->right;
-        } else {
-            if(current->left == NULL && current->right == NULL){
-                if(parent == NULL){
-                    tree->root = NULL;
-                } else if(parent->left == current){
-                    parent->left = NULL;
-                } else {
-                    parent->right = NULL;
-                }
-                free(current);
-            } else if(current->left == NULL){
-                if(parent == NULL){
-                    tree->root = current->right;
-                } else if(parent->left == current){
-                    parent->left = current->right;
-                } else {
-                    parent->right = current->right;
-                }
-                free(current);
-            } else if(current->right == NULL){
-                if(parent == NULL){
-                    tree->root = current->left;
-                } else if(parent->left == current){
-                    parent->left = current->left;
-                } else {
-                    parent->right = current->left;
-                }
-                free(current);
-            } else {
-                TreeNode* successor = minimum(current->right);
-                current->pair->key = successor->pair->key;
-                current->pair->value = successor->pair->value;
-                removeNode(tree, successor);
-            }
-            break;
-        }
+    while(temp != NULL && temp->pair->key != node->pair->key){
+        parent = temp;
+        if(node->pair->key < temp->pair->key)
+            temp = temp->left;
+        else
+            temp = temp->right;
     }
-    return;
 }
 
 
