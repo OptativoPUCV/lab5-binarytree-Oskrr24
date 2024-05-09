@@ -89,12 +89,16 @@ Pair * upperBound(TreeMap * tree, void* key) {
 }
 
 Pair * firstTreeMap(TreeMap * tree) {
-    return NULL;
+
+    TreeNode* temp = tree->root;
+    if(temp==NULL) return NULL;
+    while(temp->left!=NULL) temp=temp->left;
+    tree->current = temp;
+    return temp->pair;
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
     if(tree == NULL || tree->root == NULL) return NULL;
-    
     
     TreeNode * temp = tree->current;
     if(temp->right != NULL){
