@@ -99,7 +99,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     TreeNode * temp = tree->current;
     if(temp->right != NULL){
         tree->current = temp->right;
-        return minimum(tree->current);
+        return (Pair*)minimum(tree->current);
     } 
    while(temp->parent != NULL && temp->parent->right == temp){
        temp = temp->parent;
