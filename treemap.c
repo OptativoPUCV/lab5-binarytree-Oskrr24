@@ -134,12 +134,20 @@ void removeNode(TreeMap * tree, TreeNode* node) {
                     parent->right = current->left;
                 }
                 free(current);
-            } else {
-                TreeNode* successor = minimum(current->right);
-                current->pair->key = successor->pair->key;
-                current->pair->value = successor->pair->value;
-                removeNode(tree, successor);
+            } elTreeNode* successor = minimum(current->right);
+            TreeNode* successorParent = current;
+            while(successor->left != NULL){
+                successorParent = successor;
+                successor = successor->left;
             }
+            current->pair->key = successor->pair->key;
+            current->pair->value = successor->pair->value;
+            if(successorParent->left == successor){
+                successorParent->left = successor->right;
+            } else {
+                successorParent->right = successor->right;
+            }
+            free(successor);
             break;
         }
     }
