@@ -116,6 +116,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
                     parent->right = NULL;
                 }
                 free(current);
+                return; // Se elimina el nodo y se sale de la función
             } else if(current->left == NULL){
                 if(parent == NULL){
                     tree->root = current->right;
@@ -125,6 +126,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
                     parent->right = current->right;
                 }
                 free(current);
+                return; // Se elimina el nodo y se sale de la función
             } else if(current->right == NULL){
                 if(parent == NULL){
                     tree->root = current->left;
@@ -134,13 +136,14 @@ void removeNode(TreeMap * tree, TreeNode* node) {
                     parent->right = current->left;
                 }
                 free(current);
+                return; // Se elimina el nodo y se sale de la función
             } else {
                 TreeNode* successor = minimum(current->right);
                 current->pair->key = successor->pair->key;
                 current->pair->value = successor->pair->value;
                 removeNode(tree, successor);
+                return; // Se elimina el nodo y se sale de la función
             }
-            break; 
         }
     }
 }
