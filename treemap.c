@@ -94,16 +94,16 @@ TreeNode * minimum(TreeNode * x){
 
 void removeNode(TreeMap * tree, TreeNode* node) {
     TreeNode* temp = tree->root;
-    TreeNode* parent = tree->root;
+    TreeNode* parent = NULL;
 
     while(temp != NULL && temp->pair->key != node->pair->key){
-        parent = temp;
+    
         if(node->pair->key < temp->pair->key)
             temp = temp->left;
         else
             temp = temp->right;
     }
-    
+    parent = temp->parent;
     if(temp == NULL) return;
 
     if (temp->left == NULL && temp->right == NULL) {
